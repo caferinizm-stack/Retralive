@@ -1,0 +1,680 @@
+/* ─── RETRA · APK indirme sayfası ─────────────────────────────────────────
+   Koyu tema + neon vurgu. Mobil öncelikli: tek kolon, altta sabit indirme
+   çubuğu; 720 px üstünde iki kolon ve çubuk gizlenir.
+   Telefon gezinme çubuğu için `env(safe-area-inset-*)` boşlukları korunur.
+   Harici font/CDN yok; her şey bu dosyada. */
+
+:root {
+  --bg: #080612;
+  --bg-2: #0d0a1c;
+  --panel: rgba(23, 17, 45, 0.72);
+  --panel-solid: #16112c;
+  --line: rgba(150, 128, 255, 0.18);
+  --line-strong: rgba(150, 128, 255, 0.34);
+  --text: #f5f2ff;
+  --muted: #a79ecb;
+  --muted-2: #857bae;
+  --accent: #8b7eff;
+  --accent-2: #c9a6ff;
+  --gold: #ffc94d;
+  --gold-2: #ffe9a8;
+  --green: #50e3a4;
+  --red: #ff6b7f;
+  --radius: 22px;
+  --radius-sm: 14px;
+  --shadow: 0 24px 70px rgba(3, 2, 10, 0.75);
+  --font: "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* ── Arka plan ─────────────────────────────────────────────────────────── */
+
+.bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  background:
+    radial-gradient(120% 80% at 50% -10%, #1c1340 0%, var(--bg) 60%),
+    linear-gradient(180deg, #0a0718 0%, #06040f 100%);
+}
+
+.glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.5;
+}
+
+.glow-1 {
+  width: 46vw;
+  height: 46vw;
+  min-width: 260px;
+  min-height: 260px;
+  top: -12vw;
+  left: -10vw;
+  background: #6b3bff;
+}
+
+.glow-2 {
+  width: 38vw;
+  height: 38vw;
+  min-width: 220px;
+  min-height: 220px;
+  top: 18vh;
+  right: -12vw;
+  background: #ff4fa3;
+  opacity: 0.32;
+}
+
+.glow-3 {
+  width: 44vw;
+  height: 44vw;
+  min-width: 240px;
+  min-height: 240px;
+  bottom: -18vw;
+  left: 24vw;
+  background: #1fb6ff;
+  opacity: 0.22;
+}
+
+.grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(150, 128, 255, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(150, 128, 255, 0.07) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(80% 60% at 50% 30%, #000 0%, transparent 78%);
+  -webkit-mask-image: radial-gradient(80% 60% at 50% 30%, #000 0%, transparent 78%);
+}
+
+/* ── Üst şerit ─────────────────────────────────────────────────────────── */
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: calc(14px + env(safe-area-inset-top)) 20px 12px;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 900;
+  font-size: 17px;
+  letter-spacing: 2.4px;
+  color: #fff;
+}
+
+.brand img {
+  width: 34px;
+  height: 34px;
+  border-radius: 11px;
+  border: 1px solid var(--line-strong);
+  box-shadow: 0 0 22px rgba(139, 126, 255, 0.45);
+}
+
+.nav-tag {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 7px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(20, 15, 40, 0.6);
+}
+
+/* ── Yerleşim ──────────────────────────────────────────────────────────── */
+
+.wrap {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 6px 18px calc(96px + env(safe-area-inset-bottom));
+}
+
+.hero {
+  text-align: center;
+  padding: 20px 0 8px;
+}
+
+.hero-icon {
+  width: 136px;
+  height: 136px;
+  margin: 0 auto 18px;
+  display: grid;
+  place-items: center;
+  border-radius: 34px;
+  background: linear-gradient(160deg, rgba(139, 126, 255, 0.4), rgba(255, 79, 163, 0.16));
+  border: 1px solid rgba(200, 178, 255, 0.45);
+  box-shadow:
+    0 0 0 8px rgba(139, 126, 255, 0.08),
+    0 26px 60px rgba(70, 40, 180, 0.55);
+  position: relative;
+}
+
+.hero-icon::after {
+  content: "";
+  position: absolute;
+  inset: -18px;
+  border-radius: 46px;
+  background: radial-gradient(closest-side, rgba(139, 126, 255, 0.35), transparent);
+  filter: blur(14px);
+  z-index: -1;
+}
+
+.hero-icon img {
+  width: 118px;
+  height: 118px;
+  border-radius: 26px;
+}
+
+h1 {
+  margin: 0 0 10px;
+  font-size: clamp(26px, 7vw, 46px);
+  line-height: 1.1;
+  letter-spacing: -0.5px;
+  font-weight: 900;
+  background: linear-gradient(120deg, #fff 10%, #d8c8ff 45%, var(--gold-2) 92%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.sub {
+  margin: 0 auto 18px;
+  max-width: 34ch;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+/* ── Rozetler ──────────────────────────────────────────────────────────── */
+
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 13px;
+  font-size: 11.5px;
+  font-weight: 800;
+  color: #e7e1ff;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(22, 17, 44, 0.72);
+  backdrop-filter: blur(10px);
+}
+
+.badge .dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 12px var(--green);
+}
+
+/* ── Durum / hata ──────────────────────────────────────────────────────── */
+
+.state {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 0 auto 16px;
+  max-width: 420px;
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line);
+  background: rgba(20, 15, 40, 0.7);
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--muted);
+  text-align: left;
+}
+
+.state.show {
+  display: flex;
+}
+
+.state.error {
+  border-color: rgba(255, 107, 127, 0.45);
+  background: rgba(58, 18, 32, 0.55);
+  color: #ffc6ce;
+}
+
+.state.empty {
+  border-color: rgba(255, 201, 77, 0.4);
+  background: rgba(48, 36, 12, 0.45);
+  color: var(--gold-2);
+}
+
+.spinner {
+  width: 15px;
+  height: 15px;
+  flex: 0 0 15px;
+  border-radius: 50%;
+  border: 2px solid rgba(200, 178, 255, 0.28);
+  border-top-color: var(--accent-2);
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ── Butonlar ──────────────────────────────────────────────────────────── */
+
+.cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-family: inherit;
+  font-weight: 900;
+  font-size: 15px;
+  letter-spacing: 0.2px;
+  color: #160f2d;
+  border: none;
+  cursor: pointer;
+  border-radius: 16px;
+  padding: 16px 26px;
+  background: linear-gradient(135deg, var(--gold-2), var(--gold) 55%, #ffb02e);
+  box-shadow:
+    0 14px 34px rgba(255, 176, 46, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  transition: transform 0.16s ease, box-shadow 0.16s ease, opacity 0.16s ease;
+}
+
+.btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow:
+    0 18px 40px rgba(255, 176, 46, 0.44),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+  box-shadow: none;
+}
+
+.btn-sm {
+  font-size: 13px;
+  padding: 12px 20px;
+  border-radius: 13px;
+}
+
+.cta-note {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--muted-2);
+  letter-spacing: 0.2px;
+}
+
+/* ── İndirme ilerlemesi ────────────────────────────────────────────────── */
+
+.progress {
+  max-width: 420px;
+  margin: 16px auto 0;
+}
+
+.progress[hidden] {
+  display: none;
+}
+
+.progress-track {
+  height: 9px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  border: 1px solid var(--line);
+}
+
+.progress-bar {
+  display: block;
+  height: 100%;
+  width: 0%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2), var(--gold));
+  transition: width 0.2s ease;
+}
+
+.progress-text {
+  display: block;
+  margin-top: 8px;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+/* ── Duyuru ────────────────────────────────────────────────────────────── */
+
+.notice {
+  margin: 18px auto 0;
+  max-width: 520px;
+  padding: 13px 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(255, 201, 77, 0.36);
+  background: rgba(48, 36, 12, 0.4);
+  color: var(--gold-2);
+  font-size: 12.5px;
+  font-weight: 700;
+  line-height: 1.5;
+  text-align: left;
+}
+
+.notice[hidden] {
+  display: none;
+}
+
+/* ── Paneller ──────────────────────────────────────────────────────────── */
+
+.panel {
+  margin-top: 18px;
+  padding: 20px;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: var(--panel);
+  backdrop-filter: blur(16px);
+  box-shadow: var(--shadow);
+}
+
+.panel[hidden] {
+  display: none;
+}
+
+.panel h2 {
+  margin: 0 0 14px;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--accent-2);
+}
+
+.note-body {
+  margin: 0;
+  font-family: inherit;
+  font-size: 13px;
+  line-height: 1.7;
+  color: #e6e0ff;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* ── Özellikler ────────────────────────────────────────────────────────── */
+
+.features {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+.feature {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 13px 14px;
+  border-radius: var(--radius-sm);
+  background: rgba(12, 9, 26, 0.6);
+  border: 1px solid rgba(150, 128, 255, 0.12);
+}
+
+.feature .ico {
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 11px;
+  font-size: 17px;
+  background: linear-gradient(150deg, rgba(139, 126, 255, 0.3), rgba(255, 79, 163, 0.14));
+  border: 1px solid var(--line-strong);
+}
+
+.feature b {
+  display: block;
+  font-size: 13px;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 2px;
+}
+
+.feature span {
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+/* ── Kurulum adımları ──────────────────────────────────────────────────── */
+
+.steps {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: step;
+}
+
+.steps li {
+  counter-increment: step;
+  display: flex;
+  gap: 12px;
+  padding: 9px 0;
+  font-size: 13px;
+  line-height: 1.55;
+  color: #ded8f7;
+}
+
+.steps li::before {
+  content: counter(step);
+  flex: 0 0 24px;
+  height: 24px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font-size: 11.5px;
+  font-weight: 900;
+  color: #160f2d;
+  background: linear-gradient(140deg, var(--accent-2), var(--accent));
+}
+
+.warn {
+  margin: 14px 0 0;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  font-size: 11.5px;
+  line-height: 1.6;
+  color: var(--muted-2);
+}
+
+/* ── Güvenlik listesi ──────────────────────────────────────────────────── */
+
+.facts {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.facts li {
+  position: relative;
+  padding: 7px 0 7px 24px;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+.facts li b {
+  color: #fff;
+}
+
+.facts li::before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 13px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 10px rgba(80, 227, 164, 0.8);
+}
+
+/* ── Alt bilgi ─────────────────────────────────────────────────────────── */
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 6px 20px calc(28px + env(safe-area-inset-bottom));
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--muted-2);
+}
+
+.footer a {
+  color: var(--accent-2);
+  text-decoration: none;
+}
+
+/* ── Mobil sabit çubuk ─────────────────────────────────────────────────── */
+
+.sticky {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 18px calc(12px + env(safe-area-inset-bottom));
+  background: rgba(12, 8, 26, 0.92);
+  backdrop-filter: blur(18px);
+  border-top: 1px solid var(--line-strong);
+}
+
+.sticky[hidden] {
+  display: none;
+}
+
+.sticky-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.sticky-info b {
+  font-size: 12.5px;
+  font-weight: 900;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sticky-info span {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--muted-2);
+}
+
+/* ── Geniş ekran ───────────────────────────────────────────────────────── */
+
+@media (min-width: 720px) {
+  .wrap {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 20px;
+    align-items: start;
+    padding-bottom: 40px;
+  }
+
+  .hero {
+    grid-column: 1 / -1;
+    padding: 34px 0 10px;
+  }
+
+  .features {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .sticky {
+    display: none;
+  }
+
+  .sub {
+    max-width: 52ch;
+    font-size: 15px;
+  }
+
+  .panel {
+    margin-top: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>RETRA — Android uygulamasını indir (APK)</title>
+    <meta
+      name="description"
+      content="RETRA Android uygulamasının resmi indirme sayfası. Sesli odalar, canlı yayın, hediyeler ve şans oyunları. APK'yı doğrudan indir."
+    />
+    <meta name="theme-color" content="#080612" />
+    <meta name="color-scheme" content="dark" />
+    <link rel="manifest" href="manifest.json" />
+    <link rel="icon" type="image/png" sizes="64x64" href="assets/icon-64.png" />
+    <link rel="apple-touch-icon" href="assets/icon-192.png" />
+    <meta property="og:title" content="RETRA — Android uygulamasını indir" />
+    <meta
+      property="og:description"
+      content="Sesli odalar · canlı yayın · hediyeler · şans oyunları. APK'yı indir, kur, katıl."
+    />
+    <meta property="og:image" content="assets/icon-512.png" />
+    <meta property="og:type" content="website" />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <!-- Arka plan ışıkları + ızgara (tamamı CSS) -->
+    <div class="bg" aria-hidden="true">
+      <span class="glow glow-1"></span>
+      <span class="glow glow-2"></span>
+      <span class="glow glow-3"></span>
+      <span class="grid"></span>
+    </div>
+
+    <header class="nav">
+      <div class="brand">
+        <img src="assets/icon-192.png" alt="RETRA" width="34" height="34" />
+        <span>RETRA</span>
+      </div>
+      <span class="nav-tag">Android · APK</span>
+    </header>
+
+    <main class="wrap">
+      <section class="hero">
+        <div class="hero-icon">
+          <img src="assets/icon-256.png" alt="RETRA uygulama ikonu" width="118" height="118" />
+        </div>
+
+        <h1 id="headline">RETRA’yı telefonuna indir</h1>
+        <p class="sub" id="subtitle">
+          Sesli odalar · canlı yayın · hediyeler · şans oyunları
+        </p>
+
+        <div class="badges">
+          <span class="badge" id="badge-version">
+            <span class="dot"></span> Sürüm okunuyor…
+          </span>
+          <span class="badge" id="badge-size">Boyut —</span>
+          <span class="badge" id="badge-date">Tarih —</span>
+        </div>
+
+        <div class="state" id="state">
+          <span class="spinner" aria-hidden="true"></span>
+          <span id="state-text">Sunucuya bağlanılıyor…</span>
+        </div>
+
+        <div class="cta">
+          <button class="btn btn-primary" id="download" type="button" disabled>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M12 3v11m0 0 4.2-4.2M12 14l-4.2-4.2M5 19h14"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            <span id="download-label">APK’yı indir</span>
+          </button>
+          <span class="cta-note" id="downloads-note"></span>
+        </div>
+
+        <div class="progress" id="progress" hidden>
+          <div class="progress-track"><span class="progress-bar" id="progress-bar"></span></div>
+          <span class="progress-text" id="progress-text"></span>
+        </div>
+
+        <div class="notice" id="notice" hidden></div>
+      </section>
+
+      <section class="panel" id="whatsnew" hidden>
+        <h2>Yenilikler</h2>
+        <pre class="note-body" id="note"></pre>
+      </section>
+
+      <section class="panel">
+        <h2>Öne çıkanlar</h2>
+        <div class="features" id="features"></div>
+      </section>
+
+      <section class="panel">
+        <h2>Kurulum (30 saniye)</h2>
+        <ol class="steps" id="steps"></ol>
+        <p class="warn">
+          Uygulama Google Play dışından kurulur; bu yüzden Android bir kez
+          “bilinmeyen kaynaklardan yüklemeye izin ver” onayı ister. APK doğrudan
+          geliştiricinin sunucusundan iner, aracı yoktur.
+        </p>
+      </section>
+
+      <section class="panel" id="security">
+        <h2>Güvenlik</h2>
+        <ul class="facts">
+          <li><b>İmzalı APK:</b> uygulama aynı geliştirici imzasıyla paketlenir; güncellemeler üstüne kurulur.</li>
+          <li><b>Doğrudan indirme:</b> dosya RETRA sunucusundan gelir, üçüncü taraf site kullanılmaz.</li>
+          <li><b>Sürüm bilgisi:</b> sayfadaki sürüm ve boyut, yayınlanan APK’nın kendisinden okunur.</li>
+          <li><b>Hesap:</b> uygulamaya giriş yaptığın hesapla uygulamadaki kristal bakiyen ortaktır.</li>
+        </ul>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>© <span id="year">2026</span> RETRA</span>
+      <span class="sep">·</span>
+      <a id="top-link" href="#top">Başa dön</a>
+    </footer>
+
+    <div class="sticky" id="sticky" hidden>
+      <div class="sticky-info">
+        <b id="sticky-version">APK</b>
+        <span id="sticky-size">—</span>
+      </div>
+      <button class="btn btn-primary btn-sm" id="download-sticky" type="button" disabled>
+        İndir
+      </button>
+    </div>
+
+    <noscript>
+      <div class="wrap">
+        <p class="warn">Bu sayfa için JavaScript gerekir.</p>
+      </div>
+    </noscript>
+
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>
